@@ -79,7 +79,7 @@ module Firehose
               resp_headers.merge!(headers)
             end
 
-            if cb = env["async.callback"]
+            if cb = env.delete["async.callback"]
               cb.call response(code, message, resp_headers)
             else
               Firehose.logger.error "async.callback not set for response: #{message.inspect}"
